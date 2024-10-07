@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appliance Repairs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            background-color: white;
+            padding-bottom: 1%;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .product-description {
+            font-size: 0.875rem;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .product-price {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin: 10px 0;
+            color: orange;
+        }
+
+        .add-to-cart-button {
+            padding: 10px 20px;
+            background-color: orange;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: darkorange;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: lightgray;
+            font-size: 0.875rem;
+        }
+
+        .discount-price {
+            color: orange;
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+
+        /* Cart Styling */
+        .cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 14px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .search-container input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            border: 1px solid #007bff;
+            background-color: #007bff;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        .productsall{
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sub-header -->
+<div class="container-fluid sub-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="left-info">
+                    <li><a href="mailto:nywebenilm@gmail.com">
+                        <i class="fa fa-envelope"></i> nywebenilm@gmail.com
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fa-solid fa-phone"></i> 0661157049
+                    </a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <ul class="right-icons">
+                    <li><a href="https://www.facebook.com/profile.php?id=61560625898608"><i class="fa-brands fa-facebook-f"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/lisa-nywebeni-79463321b/"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                   
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid main-banner">
+    <!-- navbar -->
+    <div class="container">
+    <nav class="navbar navbar-expand-lg">
+<div class="container-fluid">
+<a class="logo" href="#">S.M appliance repairs
+    Home</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="index.html">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="about.html">About Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="products.html">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="contact.html">Contact Us</a>
+    </li>
+  </ul>
+</div>
+</div>
+</nav>
+    </div>
+    <!-- Search Bar -->
+    <section class="productsall">
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Search for products..." oninput="filterProducts()">
+        <button onclick="filterProducts()">Search</button>
+    </div>
+
+    <!-- Cart Icon -->
+    <div class="cart">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-container" id="productContainer">
+        <!-- Product 1 -->
+        <div class="product-card" data-name="Washing Machine Motor">
+            <a href="https://imgbb.com/"><img src="https://i.ibb.co/MZLqpDD/download.jpg" alt="download" border="0"></a>
+            <h3 class="product-name">Washing Machine Motor</h3>
+            <p class="product-description">High efficiency washing machine motor.</p>
+            <div class="product-price">$99.99</div>
+            <button class="add-to-cart-button" onclick="addToCart('Washing Machine Motor', 99.99)">Add to Cart</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-name="Refrigerator Compressor">
+            <a href="https://ibb.co/DgJQ7dn"><img src="https://i.ibb.co/DgJQ7dn/images.jpg" alt="images" border="0" width="220px"></a>
+            <h3 class="product-name">Refrigerator Compressor</h3>
+            <p class="product-description">Durable and efficient refrigerator compressor.</p>
+            <div class="product-price">
+                <span class="original-price">$99.99</span>
+                <span class="discount-price">$79.99</span>
+            </div>
+            <button class="add-to-cart-button" onclick="addToCart('Refrigerator Compressor', 79.99)">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Air Conditioner Coil">
+            <a href="https://imgbb.com/"><img src="https://i.ibb.co/jf9pxm7/shopping.webp" alt="shopping" border="0" width="300px"></a>
+            <h3 class="product-name">Air Conditioner Coil</h3>
+            <p class="product-description">Replacement coil for air conditioners.</p>
+            <div class="product-price">$99.99</div>
+            <button class="add-to-cart-button" onclick="addToCart('Air Conditioner Coil', 99.99)">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Thermostart">
+            <a href="https://imgbb.com/"><img src="https://i.ibb.co/dJ1whp3/shopping-2.webp" alt="shopping-2" border="0" width="240x"></a>
+            <h3 class="product-name">Thermostart</h3>
+            <p class="product-description">Replacement coil for air conditioners.</p>
+            <div class="product-price">$99.99</div>
+            <button class="add-to-cart-button" onclick="addToCart('Air Conditioner Coil', 99.99)">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Valve">
+            <a href="https://imgbb.com/"><img src="https://i.ibb.co/3hggRRx/charging-valve-with-tail-unitherm-14-diyshop-co-za.webp" alt="charging-valve-with-tail-unitherm-14-diyshop-co-za" border="0" width="180px"></a>
+            <h3 class="product-name">Valve</h3>
+            <p class="product-description">Replacement for regassing </p>
+            <div class="product-price">$99.99</div>
+            <button class="add-to-cart-button" onclick="addToCart('Air Conditioner Coil', 99.99)">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-name="Magnetron">
+            <a href="https://imgbb.com/"><img src="https://i.ibb.co/yfnwFyn/shopping-1.webp" alt="shopping-1" border="0" width="180px"></a>
+            <h3 class="product-name">Magnetron</h3>
+            <p class="product-description">Replacement for microwaves.</p>
+            <div class="product-price">$99.99</div>
+            <button class="add-to-cart-button" onclick="addToCart('Air Conditioner Coil', 99.99)">Add to Cart</button>
+        </div>
+    </div>
+</section>
+    <script>
+        let cart = [];
+        let cartCount = 0;
+
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price });
+            cartCount++;
+            document.getElementById('cartCount').textContent = cartCount;
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to Cart',
+                text: `${productName} has been added to your cart!`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+
+            productCards.forEach(card => {
+                const productName = card.getAttribute('data-name').toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
